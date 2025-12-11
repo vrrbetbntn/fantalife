@@ -27,7 +27,8 @@ Replace `YOUR_USERNAME` and `REPO_NAME` in:
 ### Option A: Manual Deployment
 1. Copy the `public` folder contents to your GitHub repository
 2. **Create a `.nojekyll` file** in the repository root (this disables Jekyll processing which can interfere with `.well-known` files)
-3. Enable GitHub Pages in repository settings:
+3. **Create a `404.html` file** in the repository root (this handles all routes like `/join/test123` - GitHub Pages serves this file for any 404 errors, allowing client-side routing)
+4. Enable GitHub Pages in repository settings:
    - Go to Settings → Pages
    - Source: Deploy from a branch
    - Branch: `main` (or `master`) → `/ (root)`
@@ -46,6 +47,7 @@ After deployment, verify these URLs work:
 ## Important Notes
 
 - **⚠️ Critical**: You must create a `.nojekyll` file in the repository root to disable Jekyll processing. Without this, `.well-known` files may not be accessible (404 errors).
+- **⚠️ Critical**: You must create a `404.html` file in the repository root to handle dynamic routes like `/join/test123`. GitHub Pages will serve this file for any 404 errors, allowing your JavaScript to handle the routing client-side.
 - GitHub Pages uses HTTPS by default ✅
 - The `.well-known` folder must be accessible
 - Files are served from the repository root or `/docs` folder
